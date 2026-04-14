@@ -1,0 +1,33 @@
+.header {
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  flex-shrink: 0; /* Prevents header from shrinking */
+}
+.header-nav {
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+}
+.header-logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.75rem;
+  color: #4f46e5;
+}
+.header-logo span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+.header-links { display: flex; gap: 2rem; }
+.header-links a { color: #4b5563; text-decoration: none; font-weight: 500; }
+.header-links a:hover { color: #4f46e5; }
+.header-user-info { display: flex; align-items: center; gap: 1rem; }

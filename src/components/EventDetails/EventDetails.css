@@ -1,0 +1,108 @@
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4f46e5;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.details-card {
+    background-color: white;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    border-radius: 1rem;
+    padding: 2.5rem;
+}
+
+.details-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.details-category {
+    font-weight: 600;
+    color: #4f46e5;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.details-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0 0;
+}
+
+.btn-edit {
+    background-color: #f59e0b;
+    color: white;
+}
+.btn-edit:hover {
+    background-color: #d97706;
+}
+
+.details-meta-grid {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #4b5563;
+}
+
+.meta-item svg {
+    color: #6366f1;
+    flex-shrink: 0;
+}
+
+.meta-text p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.meta-text p:first-child {
+    font-weight: 600;
+    color: #111827;
+}
+
+.details-section {
+    margin-top: 2.5rem;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 2rem;
+}
+
+.details-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+}
+
+.details-section p {
+    margin: 0.5rem 0;
+    font-size: 1.125rem;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+.details-apply-container {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.apply-btn {
+    padding: 1rem 3rem;
+    font-size: 1.125rem;
+    width: 100%;
+    max-width: 300px;
+}

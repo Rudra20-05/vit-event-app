@@ -1,0 +1,63 @@
+/* src/components/Home/Home.css */
+
+.home-hero {
+  flex-grow: 1; /* IMPORTANT: This makes the hero section fill the entire 'main' area */
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.home-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.home-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #3730a3;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.home-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin: 0;
+}
+
+.home-hero p {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  color: #e0e7ff;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-hero-btn {
+  margin-top: 2.5rem;
+  background-color: white;
+  color: #4f46e5;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}

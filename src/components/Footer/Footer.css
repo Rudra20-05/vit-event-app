@@ -1,0 +1,13 @@
+.footer {
+  background-color: #1f2937;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  flex-shrink: 0; /* Prevents footer from shrinking */
+}
+.footer p { margin: 0; }
+.footer-credits {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}

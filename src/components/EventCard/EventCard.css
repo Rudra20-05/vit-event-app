@@ -1,0 +1,73 @@
+.event-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.event-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.event-card-category {
+  color: #4f46e5;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.event-card-status {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #166534;
+  background-color: #dcfce7;
+  border-radius: 9999px;
+}
+
+.event-card-title {
+  margin: 0.75rem 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.event-card-desc {
+  margin: 0;
+  color: #6b7280;
+  flex-grow: 1; /* This is key to push the footer down */
+  line-height: 1.6;
+}
+
+.event-card-footer {
+    margin-top: 1.5rem;
+}
+
+.event-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.event-card-buttons {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.event-card-buttons .btn {
+  width: 100%;
+}

@@ -1,0 +1,101 @@
+/* Re-uses student-dashboard.css for .container, .dashboard-header, .dashboard-card */
+@import '../StudentDashboard/StudentDashboard.css';
+
+.org-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.btn-create {
+    background-color: #22c55e;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-create:hover {
+    background-color: #16a34a;
+}
+
+.managed-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.managed-event-item {
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+}
+
+.managed-event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.managed-event-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.status {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0.25rem 0 0 0;
+}
+.status.active { color: #16a34a; }
+.status.inactive { color: #dc2626; }
+
+.managed-event-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.managed-event-buttons .btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.btn-toggle.deactivate { background-color: #fee2e2; color: #b91c1c; }
+.btn-toggle.deactivate:hover { background-color: #fecaca; }
+.btn-toggle.activate { background-color: #dcfce7; color: #166534; }
+.btn-toggle.activate:hover { background-color: #bbf7d0; }
+
+.btn-edit { background-color: #fef3c7; color: #b45309; }
+.btn-edit:hover { background-color: #fde68a; }
+
+.applicants-section {
+    margin-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+}
+
+.applicants-section h4 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.applicants-section ul {
+    list-style-position: inside;
+    padding-left: 0.5rem;
+    margin: 0;
+}
+
+.no-applicants {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0.5rem 0 0 0;
+}
+
+.btn-delete {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+.btn-delete:hover {
+    background-color: #fecaca;
+}
