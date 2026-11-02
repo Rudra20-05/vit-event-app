@@ -15,7 +15,14 @@ import OrganizerDashboard from './components/OrganizerDashboard/OrganizerDashboa
 import EventForm from './components/EventForm/EventForm';
 import Modal from './components/Modal/Modal';
 
-const API_URL = 'https://vit-events-api.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://vit-events-api.onrender.com/api';
+
+const getErrorMessage = (error, defaultMsg) => {
+    if (error.response?.data?.message) return error.response.data.message;
+    if (typeof error.response?.data === 'string' && error.response.data.trim()) return error.response.data;
+    if (error.message) return error.message;
+    return defaultMsg;
+};
 
 export default function App() {
     const [view, setView] = useState('home');
@@ -24,6 +31,7 @@ export default function App() {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [eventToEdit, setEventToEdit] = useState(null);
     const [modal, setModal] = useState({ isOpen: false, title: '', content: null });
+    const [authLoading, setAuthLoading] = useState(false);
 
     useEffect(() => {
         const fetchInitialData = async () => {
@@ -53,13 +61,20 @@ export default function App() {
     };
 
     const handleLogin = async (username, password) => {
+        setAuthLoading(true);
         try {
             const response = await axios.post(`${API_URL}/users/login`, { username, password });
             localStorage.setItem('token', response.data.token);
             setCurrentUser(response.data.user);
             setView(response.data.user.role === 'organizer' ? 'organizerDashboard' : 'home');
         } catch (error) {
-            setModal({ isOpen: true, title: 'Login Failed', content: <p>{error.response?.data?.message || 'Invalid username or password.'}</p> });
+            setModal({ 
+                isOpen: true, 
+                title: 'Login Failed', 
+                content: <p>{getErrorMessage(error, 'Invalid username or password.')}</p> 
+            });
+        } finally {
+            setAuthLoading(false);
         }
     };
 
@@ -70,12 +85,19 @@ export default function App() {
     };
 
     const handleSignUp = async (newUserData) => {
+        setAuthLoading(true);
         try {
             await axios.post(`${API_URL}/users/signup`, newUserData);
             setModal({ isOpen: true, title: 'Success!', content: <p>Account created. Please log in.</p> });
             setView('login');
         } catch (error) {
-            setModal({ isOpen: true, title: 'Sign Up Failed', content: <p>{error.response?.data?.message || 'An error occurred.'}</p> });
+            setModal({ 
+                isOpen: true, 
+                title: 'Sign Up Failed', 
+                content: <p>{getErrorMessage(error, 'An error occurred during sign up.')}</p> 
+            });
+        } finally {
+            setAuthLoading(false);
         }
     };
 
@@ -93,7 +115,7 @@ export default function App() {
             setCurrentUser(response.data.updatedUser);
             setModal({ isOpen: true, title: 'Success', content: <p>You have successfully applied for the event!</p> });
         } catch (error) {
-            setModal({ isOpen: true, title: 'Application Failed', content: <p>{error.response?.data?.message || 'Could not apply for the event.'}</p> });
+            setModal({ isOpen: true, title: 'Application Failed', content: <p>{getErrorMessage(error, 'Could not apply for the event.')}</p> });
         }
     };
     
@@ -115,7 +137,7 @@ export default function App() {
             setView('organizerDashboard');
             setEventToEdit(null);
         } catch (error) {
-            setModal({ isOpen: true, title: 'Save Failed', content: <p>{error.response?.data?.message || 'Could not save the event.'}</p> });
+            setModal({ isOpen: true, title: 'Save Failed', content: <p>{getErrorMessage(error, 'Could not save the event.')}</p> });
         }
     };
 
@@ -132,19 +154,19 @@ export default function App() {
             fetchEvents();
             setModal({ isOpen: true, title: 'Success', content: <p>Event deleted successfully.</p> });
         } catch (error) {
-            setModal({ isOpen: true, title: 'Delete Failed', content: <p>{error.response?.data?.message || 'Could not delete the event.'}</p> });
+            setModal({ isOpen: true, title: 'Delete Failed', content: <p>{getErrorMessage(error, 'Could not delete the event.')}</p> });
         }
     };
 
     const renderView = () => {
         switch (view) {
-            case 'login': return <Login onLogin={handleLogin} setView={setView} />;
-            case 'signup': return <SignUp onSignUp={handleSignUp} setView={setView} />;
+            case 'login': return <Login onLogin={handleLogin} setView={setView} isLoading={authLoading} />;
+            case 'signup': return <SignUp onSignUp={handleSignUp} setView={setView} isLoading={authLoading} />;
             case 'events': return <EventList events={events} onSelectEvent={handleSelectEvent} onApply={handleApplyForEvent} currentUser={currentUser} />;
             case 'eventDetails': return <EventDetails event={selectedEvent} currentUser={currentUser} onApply={handleApplyForEvent} onBack={() => setView('events')} onEdit={handleEditEvent} />;
-            case 'studentDashboard': return currentUser ? <StudentDashboard currentUser={currentUser} events={events} onSelectEvent={handleSelectEvent} /> : <Login onLogin={handleLogin} setView={setView} />;
+            case 'studentDashboard': return currentUser ? <StudentDashboard currentUser={currentUser} events={events} onSelectEvent={handleSelectEvent} /> : <Login onLogin={handleLogin} setView={setView} isLoading={authLoading} />;
             case 'organizerDashboard': return currentUser ? <OrganizerDashboard events={events} onSelectEvent={handleSelectEvent} setView={setView} onEdit={handleEditEvent} onDelete={handleDeleteEvent} /> : <Login onLogin={handleLogin} setView={setView} />;
-            case 'eventForm': return currentUser?.role === 'organizer' ? <EventForm onSave={handleSaveEvent} onCancel={() => setView('organizerDashboard')} eventToEdit={eventToEdit} /> : <Login onLogin={handleLogin} setView={setView} />;
+            case 'eventForm': return currentUser?.role === 'organizer' ? <EventForm onSave={handleSaveEvent} onCancel={() => setView('organizerDashboard')} eventToEdit={eventToEdit} /> : <Login onLogin={handleLogin} setView={setView} isLoading={authLoading} />;
             case 'home': default: return <Home setView={setView} />;
         }
     };

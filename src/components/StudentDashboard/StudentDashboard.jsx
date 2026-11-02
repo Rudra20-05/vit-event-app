@@ -2,7 +2,9 @@ import React from 'react';
 import './StudentDashboard.css';
 
 const StudentDashboard = ({ currentUser, events, onSelectEvent }) => {
-    const appliedEvents = events.filter(event => currentUser.appliedEvents.includes(event._id));
+    const appliedEvents = events.filter(event => 
+        currentUser?.appliedEvents?.some(e => (e?._id || e) === event._id)
+    );
 
     return (
         <div className="container">

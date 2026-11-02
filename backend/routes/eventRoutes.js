@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
         res.json(events);
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Server Error');
+        res.status(500).json({ message: error.message || 'Server Error' });
     }
 });
 
@@ -44,7 +44,7 @@ router.post('/:id/apply', protect, async (req, res) => {
 
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Server Error');
+        res.status(500).json({ message: error.message || 'Server Error' });
     }
 });
 
@@ -60,7 +60,7 @@ router.post('/', protect, isOrganizer, async (req, res) => {
         res.status(201).json(event);
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Server Error');
+        res.status(500).json({ message: error.message || 'Server Error' });
     }
 });
 
@@ -74,7 +74,7 @@ router.put('/:id', protect, isOrganizer, async (req, res) => {
         res.json(event);
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Server Error');
+        res.status(500).json({ message: error.message || 'Server Error' });
     }
 });
 
@@ -88,7 +88,7 @@ router.delete('/:id', protect, isOrganizer, async (req, res) => {
         res.json({ message: 'Event deleted successfully' });
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Server Error');
+        res.status(500).json({ message: error.message || 'Server Error' });
     }
 });
 

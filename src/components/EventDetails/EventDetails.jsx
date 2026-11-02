@@ -5,7 +5,8 @@ import './EventDetails.css';
 const EventDetails = ({ event, currentUser, onApply, onBack, onEdit }) => {
     if (!event) return <div className="container"><p>Event not found.</p></div>;
 
-    const hasApplied = currentUser?.role === 'student' && currentUser.appliedEvents.includes(event._id);
+    const hasApplied = currentUser?.role === 'student' && 
+        currentUser?.appliedEvents?.some(e => (e?._id || e) === event._id);
     const isOrganizer = currentUser?.role === 'organizer';
 
     return (

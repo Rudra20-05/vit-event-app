@@ -31,11 +31,11 @@ const OrganizerDashboard = ({ events, onSelectEvent, setView, onEdit, onDelete }
                                 </div>
                             </div>
                             <div className="applicants-section">
-                                <h4>Applicants ({event.applications.length} / {event.capacity})</h4>
-                                {event.applications.length > 0 ? (
+                                <h4>Applicants ({event.applications?.length || 0} / {event.capacity})</h4>
+                                {event.applications && event.applications.length > 0 ? (
                                     <ul>
                                         {event.applications.map(applicant => (
-                                            <li key={applicant._id}>{applicant.name} (Roll No: {applicant.rollNo})</li>
+                                            <li key={applicant._id || applicant}>{applicant.name ? `${applicant.name} (Roll No: ${applicant.rollNo})` : applicant}</li>
                                         ))}
                                     </ul>
                                 ) : (

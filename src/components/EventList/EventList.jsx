@@ -24,7 +24,7 @@ const EventList = ({ events, onSelectEvent, onApply, currentUser }) => {
             <div className="event-grid">
                 {filteredEvents.map(event => (
                     <EventCard 
-                        key={event.id} 
+                        key={event._id || event.id} 
                         event={event} 
                         onSelectEvent={onSelectEvent} 
                         onApply={onApply} 

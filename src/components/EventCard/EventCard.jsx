@@ -4,7 +4,8 @@ import Icon from '../Icon/Icon';
 import './EventCard.css';
 
 const EventCard = ({ event, onSelectEvent, onApply, currentUser }) => {
-    const hasApplied = currentUser?.role === 'student' && currentUser.appliedEvents.includes(event._id);
+    const hasApplied = currentUser?.role === 'student' && 
+        currentUser?.appliedEvents?.some(e => (e?._id || e) === event._id);
 
     return (
         <Card>

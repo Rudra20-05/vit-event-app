@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-const Login = ({ onLogin, setView }) => {
+const Login = ({ onLogin, setView, isLoading }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -39,8 +39,8 @@ const Login = ({ onLogin, setView }) => {
                             placeholder="Password"
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary auth-btn">
-                        Sign in
+                    <button type="submit" className="btn btn-primary auth-btn" disabled={isLoading}>
+                        {isLoading ? 'Signing in...' : 'Sign in'}
                     </button>
                 </form>
                 <p className="auth-switch-text">

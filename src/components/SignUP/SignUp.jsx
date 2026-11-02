@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../Login/Login.css'; // Re-using the login styles
 
-const SignUp = ({ onSignUp, setView }) => {
+const SignUp = ({ onSignUp, setView, isLoading }) => {
     const [name, setName] = useState('');
     const [rollNo, setRollNo] = useState('');
     const [username, setUsername] = useState('');
@@ -33,7 +33,9 @@ const SignUp = ({ onSignUp, setView }) => {
                         <label>Password</label>
                         <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="form-input" placeholder="Password" />
                     </div>
-                    <button type="submit" className="btn btn-primary auth-btn">Sign Up</button>
+                    <button type="submit" className="btn btn-primary auth-btn" disabled={isLoading}>
+                        {isLoading ? 'Creating Account...' : 'Sign Up'}
+                    </button>
                 </form>
                 <p className="auth-switch-text">
                     Already have an account?{' '}
