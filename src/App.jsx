@@ -15,7 +15,7 @@ import OrganizerDashboard from './components/OrganizerDashboard/OrganizerDashboa
 import EventForm from './components/EventForm/EventForm';
 import Modal from './components/Modal/Modal';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://vit-events-api.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 const getErrorMessage = (error, defaultMsg) => {
     if (error.response?.data?.message) return error.response.data.message;
